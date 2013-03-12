@@ -1,9 +1,11 @@
-(ns wordcount.reducers)
+(ns wordcount.reducers
+  (:require [clojure.core.reducers :as r]))
 
 ;; Bind to core.reducer's private ForkJoin functions
 (def fjinvoke #'r/fjinvoke)
 (def fjfork #'r/fjfork)
 (def fjjoin #'r/fjjoin)
+(def fjtask #'r/fjtask)
 
 (defn- foldseq [num-tasks coll chunk-size combinef reducef]
   (fjinvoke (fn []
@@ -26,6 +28,6 @@
       (coll-reduce [_ f init]
         (clojure.core.protocols/coll-reduce coll f init))
       
-      clojure.core.reducers/CollFold
+      r/CollFold
       (coll-fold [_ n combinef reducef]
         (foldseq num-tasks coll n combinef reducef)))))
