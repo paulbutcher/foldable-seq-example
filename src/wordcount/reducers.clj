@@ -58,6 +58,10 @@
           (partition-all num-tasks 1 (map chunk->task (partition-all chunk-size coll)))))))))
 
 (defn foldable-seq
+  "Given a sequence, return a sequence that supports parallel fold.
+  The sequence is consumed incrementally in chunks of size n
+  (where n is the group size parameter passed to fold). No more than
+  num-tasks (default 10) will be processed in parallel."
   ([coll] (foldable-seq 10 coll))
   ([num-tasks coll]
     (reify
