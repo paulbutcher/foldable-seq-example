@@ -1,1 +1,1 @@
-This repository contains a small Clojure program that counts words from a [Wikipedia XML dump](http://dumps.wikimedia.org/enwiki/). It does so in parallel by extending Clojure's reducers to be able to fold over a sequence in parallel.
+This repository contains a small Clojure program that counts words from a [Wikipedia XML dump](http://dumps.wikimedia.org/enwiki/). It does so in parallel by using foldable-seq.
