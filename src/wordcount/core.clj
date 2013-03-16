@@ -4,10 +4,10 @@
             [clojure.core.reducers :as r]
             [foldable-seq.core :refer :all]))
 
-(defn frequencies-parallel [pages]
+(defn frequencies-parallel [words]
   (r/fold (partial merge-with +)
           (fn [counts x] (assoc counts x (inc (get counts x 0))))
-          (r/flatten (r/map get-words pages))))
+          words))
 
 (defn -main [& args]
   (time 
